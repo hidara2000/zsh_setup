@@ -99,8 +99,8 @@ main() {
     # Initialize conda
     ~/miniconda3/bin/conda init zsh
     ~/miniconda3/bin/conda install -y python=3.10
-    ~/miniconda3/bin/conda create -y -n 310_containers python=3.10 anaconda
-    echo 'conda activate 310_containers' >> ~/.zshrc
+    ~/miniconda3/bin/conda create -y -n generic python=3.10 anaconda
+    echo 'conda activate generic' >> ~/.zshrc
 
     # Final steps
     echo "Setup complete! Please:"
