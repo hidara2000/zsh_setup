@@ -27,23 +27,25 @@ install_packages() {
     if [[ "$distro" == "fedora" ]]; then
         sudo dnf install -y git zsh nano NetworkManager-tui inxi wget
         # Docker installation for Fedora
-        sudo dnf -y install dnf-plugins-core
+        sudo dnf -y install dnf-plugins-core fira-code-fonts
         sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
         sudo dnf install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
     elif [[ "$distro" == "ubuntu" ]]; then
         sudo apt update
-        sudo apt install -y git zsh nano network-manager inxi wget
+        sudo add-apt-repository universe
+        sudo apt update
+        sudo apt install -y git zsh nano fonts-firacode network-manager inxi wget
         # Docker installation for Ubuntu
-        sudo apt-get update
-        sudo apt-get install -y ca-certificates curl gnupg
+        sudo apt update
+        sudo apt install -y ca-certificates curl gnupg
         sudo install -m 0755 -d /etc/apt/keyrings
         curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
         sudo chmod a+r /etc/apt/keyrings/docker.gpg
         echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
         $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
         sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-        sudo apt-get update
-        sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+        sudo apt update
+        sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
     fi
 }
 
